@@ -5,6 +5,7 @@ import Navbar from "./Component/Navbar";
 import AboutUs from "./Component/AboutUs";
 import ContactUs from "./Component/ContactUs";
 import Products from "./Component/Products";
+import ProductDetails from "./Component/ProductDetails";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <Route exact path ="/about-us" element={<AboutUs/>}/>
                 <Route exact path ="/contact-us" element={<ContactUs/>}/>
                 <Route exact path ="/product-list" element={<Products/>}/>
+                <Route exact path ="/product/:id" element={<ProductDetails/>}/>
 
             </Routes>
 

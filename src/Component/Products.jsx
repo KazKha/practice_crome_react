@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Button, Grid, TextField, paperClasses } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 import ListItems from "./ListItems";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 const Products = () => {
     const [apiData, setApiData] = useState([]);
     const [apiFilterData, setApiFilterData] = useState([]);
@@ -28,10 +29,9 @@ const Products = () => {
 
     useEffect(() => {
         
-        const filtered = apiData.filter(
-            (item) =>{
-                item.title.toUpperCase().include(srch) ||
-                item.category.toUpperCase().include(srch) }
+        const filtered = apiData.filter( item => 
+                item.title.toUpperCase().includes(srch) ||
+                item.category.toUpperCase().includes(srch) 
         );
         setApiFilterData(filtered);
         setCatFilter("");
@@ -43,6 +43,7 @@ const Products = () => {
             (items) => items.category === catFilter
         );
         setApiFilterData(apiFiltered);
+        setSrch(srch)
     }, [catFilter]);
 
     return (
@@ -60,7 +61,7 @@ const Products = () => {
                         onChange={(e) => setSrch(e.target.value.toUpperCase())}
                     />
                 </Grid>
-                <br />
+                <br /><br /><br /><br />
                 {cateogryList.length > 0 &&
                     cateogryList.map((catItem, index) => (
                         <Grid item xs={3} key={index}>
@@ -77,7 +78,9 @@ const Products = () => {
 
                 {apiFilterData.length > 0 &&
                     apiFilterData.map((item, index) => (
+                       
                         <ListItems key={index} itemsList={item} />
+                       
                     ))}
             </Grid>
         </div>
